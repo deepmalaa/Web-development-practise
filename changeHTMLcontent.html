@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset ="utf-8">
+    <title>
+    Change html content
+    </title>
+    <style>
+    .bluebox{
+    background-color: #3A5795;
+    color: white;
+    height: 150px;
+    width:auto;
+    }
+    .yellowbox{
+    background-color: rgb(222, 224, 85);
+    height: 150px;
+    width: auto;
+    }
+    .greenbox{
+    background-color: #31af37;
+    height: 150px;
+    width: auto;
+    }
+    #great{
+    background-color: #5a3479;
+   
+    }
+    </style>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    </head>
+       
+    <body>
+    <div class="bluebox" id="facebook">
+    <p> Facebook is
+    <span id="great">great</span>
+    </div>
+    
+
+        <div class="yellowbox" id="apple">
+        <p>Apple.</p>
+        </div>
+
+        
+        <div class="greenbox" id="microsoft">
+        <p>Microsoft.</p>
+        </div>
+
+        <div>
+            <button id ="changeFacebook">Change facebook text</button>
+        </div>
+
+        <div>
+            <button id ="changeApple">Change apple html</button>
+        </div>
+
+        <button id ="addText">Add Text</button>
+        <p>Enter a name:<input></p>
+        <button id ="changeInput">Change Input</button>
+
+
+        <script>
+            $(function(){
+                $("#changeFacebook").click(function(){
+                    $("#facebook").text("This is facebook.");
+                });
+
+                //replaces the html code
+                $("#changeApple").click(function(){
+                    $("#apple").html("<p>This is apple. </p><p>This is apple</p>");
+                });
+
+                $("#changeInput").click(function(){
+                    $("input").val("Sam");
+                });
+
+                //prepend will add before paragraph
+                //append adds after paragraph
+                $("#addText").click(function(){
+                    $("#microsoft").append("<ul><li>BMW</li> <li>Audi</li> <li>Mercedes</li> </ul>");
+                });
+
+                $("#addText").click(function(){
+                    $("#microsoft").after("New Paragraph");
+                });
+
+            });
+            
+        </script>
+</body>
+           
+           
+</html>
