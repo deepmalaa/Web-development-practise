@@ -6,6 +6,8 @@
     Dragable and Dropable
     </title>
 
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
     <style>
     .bluebox{
     background-color: #3A5795;
@@ -25,9 +27,17 @@
     }
     #great{
     background-color: #5a3479;
-   }
+    }
+
+   #droppable{
+		background-color: #b513eb;
+		height: 300px;
+		width:auto;
+		margin-top: 20px;
+		color: white;
+	  }
     </style>
-    
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
@@ -51,17 +61,42 @@
         <p>Microsoft.</p>
         </div>
 
-        
+        <div id="droppable" class="droppable ui-corner-all">
+            You can drop things here.
+        </div>
         
         <p>Enter a name:<input></p>
         
 
 
         <script>
+            var message =["Please!","Leave me alone!","Drop me!","Come on!"];
             $(function(){
                 $("#facebook").draggable();
-                $("#apple").draggable();
+                $("#apple").draggable({axis: "y"});
+                $("#microsoft").draggable({
+                    revert: true,
+                    start: function(){
+                        $("#facebook").css("background-color", "pink");
+                    },
+                    drag: function(){
+                        $("#microsoft").css("background-color", 'rgb(' + Math.floor(256*Math.random()) + ',' + 256*Math.floor(256*Math.random()) + ',' + Math.floor(256*Math.random()) + ')');
+                        $("#microsoft").find("p").html(message[Math.floor(4*Math.random())]);
+                    },
+                    stop: function(){
+                        $("#apple").css("background-color","#b1e269");
+                        $("#microsoft").html('<p>Finally!</p>')
+                    }
+                });
+
+                $("#droppable").droppable({
+                    drop: function () {
+                       $(this).css("background-color","#b1e269");
+                      },
+                    accept: "#facebook"
+                });
             });
+
             
         </script>
 </body>
