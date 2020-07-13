@@ -54,6 +54,11 @@
 
         <div class="yellowbox ui-corner-all" id="apple">
         <p>Apple.</p>
+        <ul id="list">
+            <li>eggs</li>
+            <li>bacon</li>
+            <li>sausage</li>
+        </ul>
         </div>
 
         
@@ -62,7 +67,7 @@
         </div>
 
         <div id="droppable" class="droppable ui-corner-all">
-            You can drop things here.
+            <p>You can drop things here.</p>
         </div>
         
         <p>Enter a name:<input></p>
@@ -90,10 +95,18 @@
                 });
 
                 $("#droppable").droppable({
-                    drop: function () {
-                       $(this).css("background-color","#b1e269");
-                      },
-                    accept: "#facebook"
+                    drop: function (event, ui) {
+                        $(this).css("background-color","#b1e269");
+                        $(this).find("p").remove();
+
+                        $("<li></li>").text(ui.draggable.text()).appendTo(this)
+                        },
+                    accept: "#list li"
+                });
+
+                $("#list").find("li").draggable({
+                    helper: "clone",
+                    append: "body"
                 });
             });
 
