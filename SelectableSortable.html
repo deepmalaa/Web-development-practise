@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset ="utf-8">
+    <title>
+    Selectable and Sortable
+    </title>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+    <style>
+    .bluebox{
+    background-color: #3A5795;
+    color: white;
+    height: 150px;
+    width:auto;
+    }
+    .yellowbox{
+    background-color: rgb(222, 224, 85);
+    height: auto;
+    width: auto;
+    padding: 10px;
+    }
+    .greenbox{
+    background-color: #31af37;
+    height: auto;
+    width: auto;
+    padding:10px;
+    }
+    #great{
+    background-color: #5a3479;
+    }
+    li{
+        font-size: 2em;
+        margin-bottom: 5px;
+        text-align: center;
+    }
+
+    #list .ui-selecting{
+        background: aquamarine;
+    }
+
+    #list .ui-selected{
+        background: aquamarine;
+    }
+
+    .connect{    
+        min-height: 20px;
+    }
+    
+
+   
+    </style>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+    </head>
+       
+    <body>
+
+        
+    <div class="bluebox ui-corner-all" id="facebook">
+    <p> Facebook is
+    <span id="great">great</span>
+    </div>
+    
+
+        <div class="yellowbox ui-corner-all" id="apple">
+        <p>Apple.</p>
+        <ul id="list" class="connect">
+            <li class = "ui-state-default">eggs</li>
+            <li class = "ui-state-default">bacon</li>
+            <li class = "ui-state-default notSortable">sausage</li>
+        </ul>
+        </div>
+
+        
+        <div class="greenbox ui-corner-all" id="microsoft">
+        <p>Microsoft.</p>
+        <ul id="list2" class="connect">
+            <li class = "ui-state-default">Audi</li>
+            <li class = "ui-state-default">BMW</li>
+            <li class = "ui-state-default notSortable">Mercedes</li>
+        </ul>
+        </div>
+
+        
+
+
+        <script>
+           
+            $(function(){
+                /*$("#list").selectable({
+                    stop: function(){
+                        $(".ui-selected").each(function(){
+                            $('<p></p>').text($(this).text()).appendTo("#microsoft");
+                        });
+                    }
+                });*/
+
+
+                $("#list").sortable({
+                    placeholder: "ui-state-highlight",
+                    cancel: ".notSortable"   //cannot be sorted
+                });
+                $("#list2").sortable({
+                    placeholder: "ui-state-highlight" 
+                });
+
+                //can move items from one list to another
+                $("#list, #list2").sortable({
+                    connectWith : ".connect"
+                });
+                
+            });
+
+            
+        </script>
+</body>
+           
+           
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset ="utf-8">
+    <title>
+    Expedia
+    </title>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+    <style>
+    .bluebox{
+    background-color: #3A5795;
+    color: white;
+    height: 150px;
+    width:auto;
+    }
+    .yellowbox{
+    background-color: rgb(222, 224, 85);
+    height: auto;
+    width: auto;
+    padding: 10px;
+    }
+    .greenbox{
+    background-color: #31af37;
+    height: auto;
+    width: auto;
+    padding:10px;
+    }
+    #great{
+    background-color: #5a3479;
+    }
+    
+    .ui-autocomplete{
+        max-height: 100px;
+        overflow: auto;
+        max-width: 200px;
+    }
+
+    #city{
+        width: 200px;
+    }
+   
+    </style>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+    </head>
+       
+    <body>
+
+        
+    <div class="bluebox ui-corner-all" id="facebook">
+    <p>Input your city:<input id="city"></p>
+        <div id="checkbox">
+            <input type="checkbox" id="checkBox1">
+        <label for= "checkBox1">1 day</label>
+        <input type="checkbox" id="checkBox2">
+        <label for= "checkBox2">2 days</label>
+        <input type="checkbox" id="checkBox3">
+        <label for= "checkBox3">3 days</label>
+        </div>
+    </div>
+    
+
+        <div class="yellowbox ui-corner-all" id="apple">
+        <input type="checkbox" id="myCheckBox">
+        <label for= "myCheckBox">Checkbox</label>
+        
+        </div>
+
+        
+        <div class="greenbox ui-corner-all" id="microsoft">
+        <p>Select your flight</p>
+        <p>Flight departure date: <input id="departure"></p>
+        <p>Flight return date: <input id="return"></p>
+        </div>
+
+        <button id="button1">Button1</button>
+        <button id="button2">Button2</button>
+        <button id="button3">Button3</button>
+
+        <div id="confirmation" title="Leave the page">
+            <p><span class="ui-icon ui-icon-alert"></span>
+            You will lose all unsaved works. Are you sure?</p>
+        </div>
+    </br>
+        <button id="previous">Go to previouse page</button>
+
+        <script>
+           
+            $(function(){
+                $("#city").autocomplete({
+                    source: ["London","London","London","London",
+                    "London","London","Paris","Amsterdam"]
+                });
+
+                $("#button1").button();
+                $("#button2").button({
+                    icons: {
+                        primary :"ui-icon-folder-open"
+                    },
+                    text: false
+                });
+                $("#button3").button({
+                    icons: {
+                        primary :"ui-icon-mail-closed",
+                        secondary: "ui-icon-carat-1-e"
+                    }
+                }); 
+
+                $("#myCheckBox").button();
+                $("#checkbox").buttonset();
+
+                $("#departure").datepicker({
+                    showAnim: "slideDown",
+                    changeYear: true,
+                    numberOfMonths: 1,
+                    showOn: "button",
+                    buttonText: "Choose your departure date",
+                    minDate: +1,
+                    onClose: function(selectedDate){
+                        $("#return").datepicker("option","minDate",selectedDate);
+                    }
+
+                });
+                $("#return").datepicker({
+                    showAnim: "drop",
+                    
+                });
+
+                $("#confirmation").dialog({
+                    autoOpen: false,
+                    modal: true,
+                    buttons: {
+                        "Go to previous page" : function(){
+                            window.history.back();
+                            
+                        },
+                        Cancel: function(){
+                            $(this).dialog("close");
+                        }
+                    }
+                });
+
+                $("#previous").click(function(){
+                    $("#confirmation").dialog("open");
+                });
+                
+            });
+
+            
+        </script>
+</body>
+           
+           
+</html>
